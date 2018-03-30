@@ -1,0 +1,69 @@
+<a href="http://localhost:4020/saved">
+    <button class="btn btn-dark">See Your Saved Articles</button>
+</a>
+
+<header class="header">
+    <img id="onion" src="images/onion.png">
+    <h1 id="title">Reductress Scraper</h1>
+    <img id="scraper" src="images/scraper.png">
+</header>
+<form method="POST" action="/scrape">
+    <div class="scrapeBtn">
+        <button type="submit" class="btn btn-dark btn-block btn-lg" id="scrapeBtn" data-toggle="modal" data-target="#scrapeModal">SCRAPE!</button>
+    </div>
+</form>
+
+
+
+
+<br>
+<br>
+<div class="cardDisplay">
+    {{#each results}} {{#if summary}}
+
+
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{image}}" alt="Card image cap">
+        <div class="card-body">
+            <a href="{{URL}}">
+                <h5 class="card-title">{{title}}</h5>
+            </a>
+            <p class="card-text">{{summary}}</p>
+            {{#if saved}}
+            <button id="saveBtn" disabled="true" data-id="{{@index}}" class="btn btn-dark">
+                <em>Saved!</em>
+            </button>
+            {{else}}
+            <button id="saveBtn" data-id="{{@index}}" class="btn btn-dark">Save Article</button>
+            {{/if}}
+        </div>
+    </div>
+
+
+    {{!--
+    <form>
+        <div class="form-group">
+            <label for="note">
+                <strong>Notes: </strong>
+            </label>
+            <textarea data-id="{{inc @index}}" class="form-control" placeholder="Type any notes about this article here" type="text"
+                name="note" id="note"></textarea>
+        </div>
+    </form>
+    <hr> --}} {{/if}} {{/each}}
+</div>
+
+
+<div class="modal fade" id="scrapeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h1>Scraping Reductress...</h1>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
